@@ -10,15 +10,15 @@ type SearchSectionProps = {
 }
 
 export default function SearchResultsList({query, onShowClicked} : SearchSectionProps) {
-    // const {shows, error, isLoading} = useShowsSearch(query);
+    const {results: shows ,error, isLoading} = useShowsSearch()!;
 
-    // if(isLoading) return <>Loading...</>
-    // if(error) return <>Error: {error}</>
+    if(isLoading) return <>Loading...</>
+    if(error) return <>Error: {error}</>
 
     return(
         <div style={{display: "flex", flexWrap: "wrap", gap: 16}}>
             {
-                // shows.map(s => <ShowCard key={s.Show.Id} show={s.Show} onCardClicked={onShowClicked}/>)
+                shows.map(s => <ShowCard key={s.Show.Id} show={s.Show} onCardClicked={onShowClicked}/>)
             }
         </div>
     )

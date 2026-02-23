@@ -24,7 +24,7 @@ export function ShowsSearchProvider({children} : {children: React.ReactNode}) {
     const [results, setResults] = useState<SearchedShow[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-    
+
     useEffect(() => {
         if(userQuery.length < 2) return;
         
@@ -46,11 +46,16 @@ export function ShowsSearchProvider({children} : {children: React.ReactNode}) {
         return () => clearTimeout(timeout);
     }, [userQuery]);
 
-    const cancelSearch = () => {
-        setIsSearching(false);
+    const clearSearch = () => {
         setUserQuery("");
+        setResults([]);
     }
 
+    const cancelSearch = () => {
+        setIsSearching(false);
+        clearSearch();
+    }
+    
     return(
         <ShowsSearchContext.Provider
             value={{
@@ -60,7 +65,7 @@ export function ShowsSearchProvider({children} : {children: React.ReactNode}) {
                 isLoading,
                 error,
                 cancelSearch,
-                clearSearch: () => setUserQuery(""),
+                clearSearch,
                 initializeSearch: () => setIsSearching(true),
                 updateQuery: (query) => setUserQuery(query)
             }}

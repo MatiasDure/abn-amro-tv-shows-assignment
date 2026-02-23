@@ -1,13 +1,19 @@
 import { Routes, Route } from "react-router-dom";
 import ShowsDashboardPage from "./pages/ShowsDashboardPage";
 import ShowDetails from "./pages/ShowDetailsPage";
+import { ShowsBrowseProvider } from "./features/browse/context/ShowsBrowseContext";
+import { ShowsSearchProvider } from "./features/search/context/ShowsSearchContext";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<ShowsDashboardPage />} />
-      <Route path="/show/:id" element={<ShowDetails />} />
-    </Routes>
+    <ShowsBrowseProvider>
+      <ShowsSearchProvider>
+        <Routes>
+          <Route path="/" element={<ShowsDashboardPage />} />
+          <Route path="/show/:id" element={<ShowDetails />} />
+        </Routes>
+      </ShowsSearchProvider>
+    </ShowsBrowseProvider>
   )
 }
 

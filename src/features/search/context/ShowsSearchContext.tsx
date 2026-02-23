@@ -11,7 +11,6 @@ type ShowsSearchContextType = {
     isLoading: boolean,
     error: string | null,
     cancelSearch: () => void,
-    clearSearch: () => void,
     initializeSearch: () => void,
     updateQuery: (query: string) => void
 }
@@ -46,14 +45,10 @@ export function ShowsSearchProvider({children} : {children: React.ReactNode}) {
         return () => clearTimeout(timeout);
     }, [userQuery]);
 
-    const clearSearch = () => {
-        setUserQuery("");
-        setResults([]);
-    }
-
     const cancelSearch = () => {
         setIsSearching(false);
-        clearSearch();
+        setUserQuery("");
+        setResults([]);
     }
     
     return(
@@ -65,7 +60,6 @@ export function ShowsSearchProvider({children} : {children: React.ReactNode}) {
                 isLoading,
                 error,
                 cancelSearch,
-                clearSearch,
                 initializeSearch: () => setIsSearching(true),
                 updateQuery: (query) => setUserQuery(query)
             }}

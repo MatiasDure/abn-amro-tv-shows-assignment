@@ -1,0 +1,48 @@
+.horizontal-list {
+    width: 100%;
+    margin-bottom: 1.4rem;
+
+    &:first-of-type { 
+        margin-top: 1.4rem; 
+    }
+
+    &__title {
+        margin-bottom: .6rem;
+    }
+
+    &__scroll-container {
+        position: relative;
+        width: 100%;
+    }
+
+    &__scroll-window {
+        overflow-x: hidden;
+        scroll-snap-type: x mandatory;
+    }
+    
+    &__list{
+        display: flex;
+        gap: 1rem;
+    }
+}
+
+.scroll-button {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 8px;
+    border: none;
+    height: 40%;
+    width: 48px;
+    color: white;
+
+    &.right {
+        right: 0;
+    }
+
+    &.left {
+        left: 0;
+    }
+}

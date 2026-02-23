@@ -20,5 +20,9 @@ export function createGenreShowMap(shows: Show[]): GenreShows[] {
     map.set(genre, list);
   }
 
-  return Array.from(map, ([Genre, Shows]) => ({ Genre, Shows }));
+  const sortedGenreShows = Array
+    .from(map, ([Genre, Shows]) => ({ Genre, Shows }))
+    .sort((a, b) => b.Shows.length - a.Shows.length);
+
+  return sortedGenreShows.splice(0, Math.min(5, sortedGenreShows.length))
 }

@@ -1,15 +1,12 @@
-import { useState } from "react";
-import { useShowsSearch } from "../hooks/useShowsSearch";
-// import ShowCard from "../../shows/components/ShowCard";
-import type { Show } from "../../shared/types/show";
-import ShowCard from "../../shared/components/ShowCard";
+import { useShowsSearch } from "../../hooks/useShowsSearch";
+import type { Show } from "../../../shared/types/show";
+import ShowCard from "../../../shared/components/ShowCard/ShowCard";
 
 type SearchSectionProps = {
-    query: string,
     onShowClicked: (show: Show) => void
 }
 
-export default function SearchResultsList({query, onShowClicked} : SearchSectionProps) {
+export default function SearchResultsList({onShowClicked} : SearchSectionProps) {
     const {results: shows ,error, isLoading} = useShowsSearch()!;
 
     if(isLoading) return <>Loading...</>

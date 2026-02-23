@@ -1,14 +1,14 @@
-import HorizontalShowList from "../features/browse/components/HorizontalShowList";
-import SearchBar from "../features/search/components/SearchBar";
+import HorizontalShowList from "../features/browse/components/HorizontalShowList/HorizontalShowList";
+import SearchBar from "../features/search/components/SearchBar/SearchBar";
 import type { Show } from "../features/shared/types/show";
 import { useNavigate } from "react-router-dom";
 import { useCallback } from "react";
-import SearchSection from "../features/search/components/SearchResultsList";
+import SearchSection from "../features/search/components/SearchResultsList/SearchResultsList";
 import { useShowsBrowse } from "../features/browse/hooks/useBrowseShows";
 import { useShowsSearch } from "../features/search/hooks/useShowsSearch";
 
 export default function ShowsDashboardPage() {
-    const {isSearching, clearSearch, cancelSearch, initializeSearch, userQuery, updateQuery} = useShowsSearch()!;
+    const {isSearching, cancelSearch, initializeSearch, userQuery, updateQuery} = useShowsSearch()!;
     const {genreShowMap} = useShowsBrowse()!;
     const navigate = useNavigate();
 
@@ -22,7 +22,6 @@ export default function ShowsDashboardPage() {
                 input={userQuery}
                 placeholder="Find Your Show"
                 onChange={updateQuery}
-                onClear={clearSearch}
                 onFocus={initializeSearch}
                 onCancel={cancelSearch}
                 isFocused={isSearching}

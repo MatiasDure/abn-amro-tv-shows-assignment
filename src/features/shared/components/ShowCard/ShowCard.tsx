@@ -1,7 +1,7 @@
 // import type { Show } from "../../../shared/types/show"
 import { Heart, Star } from "lucide-react"
-import type { Show } from "../types/show"
-import { useFavoriteShows } from "../../favorite/hooks/useFavoriteShows"
+import type { Show } from "../../types/show"
+import { useFavoriteShows } from "../../../favorite/hooks/useFavoriteShows"
 
 type ShowCardProps = {
     show: Show,
@@ -16,10 +16,10 @@ export default function ShowCard({show, onCardClicked} : ShowCardProps) {
     }
 
     return (
-        <div
+        <li
             style={{
                 position: "relative",
-                scrollSnapAlign: "start"
+                scrollSnapAlign: "end"
             }}
         >
             <button
@@ -54,6 +54,6 @@ export default function ShowCard({show, onCardClicked} : ShowCardProps) {
                         fill={favoriteShows?.favoriteShows.includes(show.Id.toString()) ? "#f56565" : "transparent"}
                     />
             </div>
-        </div>
+        </li>
     )
 }

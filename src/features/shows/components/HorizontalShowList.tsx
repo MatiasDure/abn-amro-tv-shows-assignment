@@ -4,6 +4,7 @@ import { useWindowSize } from "../../../shared/hooks/useWindowSize";
 import Scroller from "./Scroller";
 import { useDivScroll } from "../hooks/useScroll";
 import React from "react";
+import ShowCard from "./ShowCard";
 
 type HorizontalShowListProps = {
     title: string,
@@ -72,34 +73,11 @@ function HorizontalShowList({title, shows, onShowClicked} : HorizontalShowListPr
 
                 <Scroller scrollRef={scrollRef} >
                     {shows.map(show => (
-                        <div
-                        key={show.Id}
-                        style={{
-                            position: "relative",
-                            scrollSnapAlign: "start"
-                        }}
-                        >
-                            <button
-                                onClick={() => onShowClicked(show)}
-                                style={{ border: "none", background: "none" }}
-                                >
-                                <img src={show.ImageUrl} />
-                            </button>
-                            <span
-                                style={{
-                                    position: "absolute",
-                                    bottom: 30,
-                                    left: 0,
-                                    fontSize: 28,
-                                    backgroundColor: "rgba(0,0,0,0.7)",
-                                    color: "white",
-                                    padding: 12,
-                                    borderRadius: 8
-                                }}
-                                >
-                                ⭐ {show.Rating}
-                            </span>
-                        </div>
+                        <ShowCard 
+                            key={show.Id}
+                            show={show}
+                            onCardClicked={onShowClicked}
+                        />
                     ))}
                 </Scroller>
             </div>

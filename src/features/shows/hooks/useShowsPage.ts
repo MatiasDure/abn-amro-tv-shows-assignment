@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import type { GenreShows, Show } from "../types/show";
-import { SHOWS_LIST_MOCK } from "../utils/mocks/show";
-import { mapShowResponse } from "../utils/mappers/mapShowReponse";
+import type { Show } from "../types/show";
+import type { GenreShows } from "../types/genreShow";
+import { mapShowResponse } from "../utils/mappers/mapShowResponse";
+import { getShowsByPage } from "../api/getShowsByPage";
 
 export function useShowsPage() {
     const [shows, setShows] = useState<Show[]>([]);
@@ -20,11 +21,9 @@ export function useShowsPage() {
         })
             
         map.forEach((shows, genre) => {
-            const filtered = shows
-                .filter(show => show.Rating >= 0)
-                .sort((a, b) => b.Rating - a.Rating);
+            const sorted = shows.sort((a, b) => b.Rating - a.Rating);
             
-            map.set(genre, filtered);
+            map.set(genre, sorted);
         });
 
         console.log("recreating the genre map");
@@ -34,21 +33,12 @@ export function useShowsPage() {
     useEffect(() => {
         const fetchAll = async() => {
             try {
-                if(import.meta.env.MODE === "development") {
-                    console.log("working in dev environment");
-                    setShows(SHOWS_LIST_MOCK.map(d => mapShowResponse(d)));
-                } else {
-                    // to-do: Move to api directory and create client
-                    const res = await fetch("https://api.tvmaze.com/shows?page=1");
-                    
-                    if(!res.ok) {
-                        console.error("Error fetching: ", res.status);
-                        return;
-                    }
-                    
-                    const shows: any[] = await res.json();
-                    setShows(shows.map(d => mapShowResponse(d)));
-                }
+                const shows : any[] = await getShowsByPage(1);
+                const filtered = shows
+                    .map(d => mapShowResponse(d))
+                    .filter(s => s.Rating >= 0);
+
+                setShows(filtered);
             } catch(error) {
                 console.error((error as Error).message);
             }

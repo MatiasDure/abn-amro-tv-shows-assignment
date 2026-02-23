@@ -1,4 +1,7 @@
-import type { Show } from "../../../shared/types/show"
+// import type { Show } from "../../../shared/types/show"
+import { Heart, Star } from "lucide-react"
+import type { Show } from "../types/show"
+import { useFavoriteShows } from "../../favorite/hooks/useFavoriteShows"
 
 type ShowCardProps = {
     show: Show,
@@ -6,6 +9,12 @@ type ShowCardProps = {
 }
 
 export default function ShowCard({show, onCardClicked} : ShowCardProps) {
+    const favoriteShows = useFavoriteShows();
+
+    if(!favoriteShows) {
+        console.error("Error loading favorite shows");
+    }
+
     return (
         <div
             style={{
@@ -19,20 +28,32 @@ export default function ShowCard({show, onCardClicked} : ShowCardProps) {
                 >
                 <img src={show.ImageUrl} />
             </button>
-            <span
-                style={{
-                    position: "absolute",
-                    bottom: 30,
-                    left: 0,
-                    fontSize: 28,
-                    backgroundColor: "rgba(0,0,0,0.7)",
-                    color: "white",
-                    padding: 12,
-                    borderRadius: 8
-                }}
-                >
-                ⭐ {show.Rating}
-            </span>
+            <div style={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                <span
+                    style={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: 6,
+                        fontSize: 20,
+                        backgroundColor: "rgba(0,0,0,0.7)",
+                        color: "white",
+                        padding: 6,
+                        borderRadius: 8
+                    }}
+                    >
+                    <Star 
+                        color="gold"    
+                    />
+                    <span>{show.Rating}</span> 
+                </span>
+                    <Heart 
+                        onClick={() => favoriteShows?.toggleFavoriteShow(show.Id.toString())}
+                        color={favoriteShows?.favoriteShows.includes(show.Id.toString()) ? "#f56565" : "black"}
+                        size={28}
+                        fill={favoriteShows?.favoriteShows.includes(show.Id.toString()) ? "#f56565" : "transparent"}
+                    />
+            </div>
         </div>
     )
 }

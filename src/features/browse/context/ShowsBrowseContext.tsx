@@ -3,6 +3,7 @@ import type { GenreShows } from "../types/genreShow";
 import type { Show } from "../../shared/types/show";
 import { getShowsByPage } from "../api/getShowsByPage";
 import { mapShowResponse } from "../../shared/mappers/mapShowResponse";
+import { createGenreShowMap } from "../utils/createGenreShowMap";
 
 type ShowsBrowseContextType = {
     genreShowMap: GenreShows[],
@@ -13,28 +14,9 @@ export const ShowsBrowseContext = createContext<ShowsBrowseContextType | null>(n
 
 export function ShowsBrowseProvider({children} : {children: React.ReactNode}) {
     const [shows, setShows] = useState<Show[]>([]);
-    const genreShowMap = useMemo<GenreShows[]>(() => {
-        if(shows.length === 0) return [];
-
-        const map = new Map<string, Show[]>();
-
-        shows.forEach(show => {
-            show.Genres.forEach(genre => {
-                if(!map.has(genre)) 
-                    map.set(genre, []);
-
-                map.get(genre)!.push(show);
-            })
-        })
-            
-        map.forEach((shows, genre) => {
-            const sorted = shows.sort((a, b) => b.Rating - a.Rating);
-            map.set(genre, sorted);
-        });
-
-        console.log("recreating the genre map");
-        return Array.from(map, ([Genre, Shows]) => ({ Genre, Shows }));
-    }, [shows]);
+    const genreShowMap = useMemo<GenreShows[]>(
+        () => createGenreShowMap(shows),
+        [shows]);
 
     useEffect(() => {
         const fetchAll = async() => {

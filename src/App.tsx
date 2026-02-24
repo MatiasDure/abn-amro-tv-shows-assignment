@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import ShowsDashboardPage from "./pages/ShowsDashboardPage";
-import ShowDetails from "./pages/ShowDetailsPage";
+import ShowsDashboardPage from "./pages/ShowDashboardPage/ShowsDashboardPage";
+import ShowDetails from "./pages/ShowDetailsPage/ShowDetailsPage";
 import { ShowsBrowseProvider } from "./features/browse/context/ShowsBrowseContext";
 import { ShowsSearchProvider } from "./features/search/context/ShowsSearchContext";
 import { FavoriteShowsProvider } from "./features/favorite/context/FavoriteShowsContext";
 
-function App() {
+export default function App() {
   return (
     <ShowsBrowseProvider>
       <ShowsSearchProvider>
@@ -19,5 +19,3 @@ function App() {
     </ShowsBrowseProvider>
   )
 }
-
-export default App

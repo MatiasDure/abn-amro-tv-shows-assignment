@@ -1,15 +1,17 @@
-import type { Show } from "../../../../shared/types/show";
+import type { DetailedShow } from "../../types/detailedShow";
 
-export function mapShowResponse(data: any) : Show {
+export function mapDetailedShowResponse(data: any) : DetailedShow {
     return {
         Id: data.id,
         Name: data.name,
-        Summary: data.summary,
-        Language: data.language,
         ImageUrl: data.image?.medium ?? null,
         Genres: data.genres,
         // For some show ratings, average is null. To make filtering easier we set these to -1 instead.
         Rating: data.rating.average ?? -1,
-        Status: data.status
+        Summary: data.summary,
+        Language: data.language,
+        Status: data.status,
+        Premiered: data.premiered,
+        Ended: data.ended,
     }
 }

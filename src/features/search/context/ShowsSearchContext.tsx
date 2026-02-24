@@ -3,6 +3,7 @@ import type { SearchedShow } from "../types/searchedShow";
 import { getShowsByQuery } from "../api/getShowsByQuery";
 import { SEARCH_DEBOUNCE_MS } from "../constants/constants";
 import { mapSearchShowResponse } from "../utils/mappers/mapSearchShowResponse";
+import { ERROR_FETCH_FAILED } from "../../shared/constants/messages";
 
 type ShowsSearchContextType = {
     userQuery: string,
@@ -36,7 +37,7 @@ export function ShowsSearchProvider({children} : {children: React.ReactNode}) {
                 setResults(res.map(rawShow => mapSearchShowResponse(rawShow)))
             } catch(error) {
                 console.error((error as Error).message);
-                setError("Something went wrong when searching for shows.");
+                setError(ERROR_FETCH_FAILED);
             } finally {
                 setIsLoading(false);
             }

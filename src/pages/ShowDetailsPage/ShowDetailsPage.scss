@@ -1,0 +1,106 @@
+.show-details {
+  padding: 1.6rem;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__back-button {
+    background: none;
+    border: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+    color: #0077ff;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__header {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__poster {
+    width: 18rem;
+    aspect-ratio: 42/59;
+    object-fit: cover;
+    border-radius: .8rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+
+    @media (max-width: 600px) {
+      width: 70%;
+      max-width: 22rem;
+    }
+  }
+
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  &__title {
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    font-size: 1.6rem;
+
+    @media (max-width: 600px) {
+      justify-content: center;
+    }
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: 1.6rem;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    padding: .4rem .8rem;
+    border-radius: .6rem;
+
+    svg {
+      color: gold;
+    }
+  }
+
+  &__favorite-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    svg {
+      width: 2.4rem;
+      height: 2.4rem;
+      transition: transform .2s ease;
+    }
+
+    &:hover svg {
+      transform: scale(1.15);
+    }
+  }
+
+  &__summary {
+    line-height: 1.6;
+    font-size: 1.6rem;
+    color: #333;
+  }
+}

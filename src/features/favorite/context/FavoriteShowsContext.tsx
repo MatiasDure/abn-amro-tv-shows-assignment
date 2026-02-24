@@ -17,7 +17,7 @@ export function FavoriteShowsProvider({children} : {children : React.ReactNode})
             const shows = getItem<string[]>(LOCAL_STORAGE_FAVORITE_KEY);
 
             if(!shows) {
-                console.log("No item found with key", LOCAL_STORAGE_FAVORITE_KEY);
+                console.error("No item found with key", LOCAL_STORAGE_FAVORITE_KEY);
                 return;
             }
             

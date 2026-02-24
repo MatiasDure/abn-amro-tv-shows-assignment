@@ -10,13 +10,14 @@ import "./HorizontalShowList.scss"
 type HorizontalShowListProps = {
     title: string,
     shows: Show[],
+    emptyListFallback?: string,
     onShowClicked: (show: Show) => void
 }
 
-function HorizontalShowList({title, shows, onShowClicked} : HorizontalShowListProps) {
+function HorizontalShowList({title, shows, emptyListFallback, onShowClicked} : HorizontalShowListProps) {
     const screenSize = useWindowSize();
     const scrollRef = useRef<HTMLDivElement | null>(null);
-    const {canScrollLeft, canScrollRight} = useDivScroll(scrollRef);
+    const {canScrollLeft, canScrollRight} = useDivScroll(scrollRef, shows.length);
 
     const scrollLeft = () => {
         if (!scrollRef.current) return;
@@ -37,31 +38,36 @@ function HorizontalShowList({title, shows, onShowClicked} : HorizontalShowListPr
     return (
         <section className="horizontal-list">
             <h1 className="horizontal-list__title">{title}</h1>
-            <div className="horizontal-list__scroll-container">
-                { 
-                    canScrollLeft && 
-                    <button className="left scroll-button" onClick={scrollLeft}>
-                        <ChevronLeft size={"2.5rem"} />
-                    </button>
-                }
-                {
-                    canScrollRight && 
-                    <button onClick={scrollRight} className="right scroll-button">
-                        <ChevronRight size={"2.5rem"} />
-                    </button>
-                }
-                <div ref={scrollRef} className="horizontal-list__scroll-window">
-                    <ul className="horizontal-list__list">
-                        {shows.map(show => (
-                            <ShowCard 
+            { 
+                shows.length > 0 ?
+                <div className="horizontal-list__scroll-container">
+                    { 
+                        canScrollLeft && 
+                        <button className="left scroll-button" onClick={scrollLeft}>
+                            <ChevronLeft size={"2.5rem"} />
+                        </button>
+                    }
+                    {
+                        canScrollRight && 
+                        <button onClick={scrollRight} className="right scroll-button">
+                            <ChevronRight size={"2.5rem"} />
+                        </button>
+                    }
+                    <div ref={scrollRef} className="horizontal-list__scroll-window">
+                        <ul className="horizontal-list__list">
+                            {shows.map(show => (
+                                <ShowCard 
                                 key={show.Id}
                                 show={show}
                                 onCardClicked={onShowClicked}
-                            />
-                        ))}
-                    </ul>
+                                />
+                            ))}
+                        </ul>
+                    </div>
                 </div>
-            </div>
+                :
+                <span>{emptyListFallback}</span>
+            }
         </section>
     );
 }

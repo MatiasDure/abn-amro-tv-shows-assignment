@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
-export function useDivScroll(scrollRef: React.RefObject<HTMLDivElement | null>) {
+export function useDivScroll(scrollRef: React.RefObject<HTMLDivElement | null>, showsLength: number) {
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(true);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (!scrollRef) return;
         
         const element = scrollRef.current;
@@ -19,7 +19,7 @@ export function useDivScroll(scrollRef: React.RefObject<HTMLDivElement | null>) 
         element.addEventListener("scroll", update);
 
         return () => element.removeEventListener("scroll", update);
-    }, []);
+    }, [showsLength]);
 
     return {
         canScrollLeft,

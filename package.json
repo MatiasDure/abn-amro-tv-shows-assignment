@@ -1,6 +1,6 @@
 {
   "name": "abn-amro-tv-assignment",
-  "homepage": "https://MatiasDure.github.io/abn-amro-tv-assignment",
+  "homepage": "https://MatiasDure.github.io/abn-amro-tv-shows-assignment",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "postbuild": "cp dist/index.html dist/404.html"
   },
   "dependencies": {
     "lucide-react": "^0.575.0",

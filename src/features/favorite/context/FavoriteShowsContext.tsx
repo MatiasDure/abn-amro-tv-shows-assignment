@@ -3,14 +3,14 @@ import { getItem, storeItem } from "../../shared/utils/storage/localStorage";
 import { LOCAL_STORAGE_FAVORITE_KEY } from "../constants/constants";
 
 type FavoriteShowsContextType = {
-    favoriteShows: string[],
+    favoriteShowsIds: string[],
     toggleFavoriteShow: (showId: string) => void,
 }
 
 export const FavoriteShowsContext = createContext<FavoriteShowsContextType | null>(null);
 
 export function FavoriteShowsProvider({children} : {children : React.ReactNode}) {
-    const [favoriteShows, setFavoriteShows] = useState<string[]>([]);
+    const [favoriteShowsIds, setFavoriteShowsIds] = useState<string[]>([]);
 
     useEffect(() => {
         const fetchFavorites = () => {
@@ -21,26 +21,26 @@ export function FavoriteShowsProvider({children} : {children : React.ReactNode})
                 return;
             }
             
-            setFavoriteShows(shows);
+            setFavoriteShowsIds(shows);
         }
 
         fetchFavorites();
     }, []);
 
     const setFavoriteShow = (showId: string) => {
-        const updatedFavorites = [...favoriteShows, showId];
+        const updatedFavorites = [...favoriteShowsIds, showId];
         storeItem<string[]>(LOCAL_STORAGE_FAVORITE_KEY, updatedFavorites);
-        setFavoriteShows(updatedFavorites);
+        setFavoriteShowsIds(updatedFavorites);
     }
     
     const removeFavoriteShow = (showId: string) => {
-        const updatedFavorites = favoriteShows.filter(s => s !== showId);
+        const updatedFavorites = favoriteShowsIds.filter(s => s !== showId);
         storeItem<string[]>(LOCAL_STORAGE_FAVORITE_KEY, updatedFavorites);
-        setFavoriteShows(updatedFavorites);    
+        setFavoriteShowsIds(updatedFavorites);    
     }
 
     const toggleFavoriteShow = (showId: string) => {
-        if(favoriteShows.includes(showId)) 
+        if(favoriteShowsIds.includes(showId)) 
             removeFavoriteShow(showId);
         else
             setFavoriteShow(showId); 
@@ -49,7 +49,7 @@ export function FavoriteShowsProvider({children} : {children : React.ReactNode})
     return(
         <FavoriteShowsContext.Provider
             value={{
-                favoriteShows,
+                favoriteShowsIds,
                 toggleFavoriteShow
             }}
         >

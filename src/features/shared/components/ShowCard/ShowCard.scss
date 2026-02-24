@@ -1,0 +1,55 @@
+@use "/src/styles/mixins" as *;
+
+.show-card {
+    position: relative;
+    scroll-snap-align: end;
+    
+    &__poster {
+        width: 12rem;
+        aspect-ratio: 42/59;
+        border-radius: 10px;
+    }
+
+    &__info {
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+    }
+
+    &__rating-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .4rem;
+        font-size: 1.6rem;
+        background-color: rgba(0,0,0,0.7);
+        color: white;
+        padding: 6px;
+        border-radius: 8px;
+        
+        @include respond(desktop) {
+            font-size: 1.4rem;
+        }
+    }
+
+    &__rating-icon {
+        color: gold;
+        width: 1.8rem;
+        height: 1.8rem;
+        
+        @include respond(desktop) {
+            width: 1.6rem;
+            height: 1.6rem;
+        }
+    }
+    
+    &__favorite-button {
+        width: 2.4rem;
+        height: 2.4rem;
+        
+        @include respond(desktop) {
+            width: 2.2rem;
+            height: 2.2rem;
+        }
+    }
+}

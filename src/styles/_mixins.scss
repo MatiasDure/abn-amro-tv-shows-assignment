@@ -9,3 +9,7 @@
         @media screen and (min-width: 769px) { @content; }
     }
 }
+
+@mixin mobile { @include respond(mobile) { @content }}
+@mixin tablet { @include respond(tablet) { @content }}
+@mixin desktop { @include respond(desktop) { @content }}

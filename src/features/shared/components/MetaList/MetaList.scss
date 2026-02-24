@@ -1,11 +1,16 @@
+@use "/src/styles/mixins" as *;
 .meta-list {
-    display: flex;
-    flex-direction: column;
-    gap: .6rem;
-    font-size: 1.4rem;
-    color: #444;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  font-size: 1.4rem;
+  color: #444;
+  align-items: center;
 
-    @media (max-width: 600px) {
-      align-items: center;
-    }
+  @include desktop {
+    align-items: flex-start;
   }
+  @include tablet {
+    align-items: flex-start;
+  }
+}

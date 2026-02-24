@@ -12,11 +12,11 @@
 html {
     font-size: 12px;
     
-    @include respond(tablet) {
+    @include tablet {
         font-size: 14px;
     }
     
-    @include respond(desktop) {
+    @include desktop {
         font-size: 16px;
     }
 }

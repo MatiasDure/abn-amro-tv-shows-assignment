@@ -10,6 +10,7 @@ import { Loading } from "../../features/shared/components/Loading/Loading";
 import { ErrorFallback } from "../../features/shared/components/Error/ErrorFallback";
 import { ERROR_FETCH_FAILED, ERROR_NO_ID } from "../../features/shared/constants/messages";
 import { removeHtmlTags } from "../../features/details/utils/formatting/removeHtmlTags";
+import { ArrowLeft } from "lucide-react";
 
 export default function ShowDetailsPage() {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ export default function ShowDetailsPage() {
   return (
     <div className="show-details">
       <button className="show-details__back-button" onClick={() => navigate(-1)}>
-        Back
+        <ArrowLeft className="show-details__back-button-icon"/>
       </button>
 
       <div className="show-details__header">

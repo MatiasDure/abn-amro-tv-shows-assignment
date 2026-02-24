@@ -42,7 +42,7 @@
         padding: .4rem;
         border-radius: .7rem;
         
-        @include respond(desktop) {
+        @include desktop {
             font-size: 1.4rem;
         }
     }
@@ -52,7 +52,7 @@
         width: 1.8rem;
         height: 1.8rem;
         
-        @include respond(desktop) {
+        @include desktop {
             width: 1.6rem;
             height: 1.6rem;
         }
@@ -62,7 +62,7 @@
         width: 2.4rem;
         height: 2.4rem;
         
-        @include respond(desktop) {
+        @include desktop {
             width: 2.2rem;
             height: 2.2rem;
         }

@@ -60,7 +60,7 @@
     &__fallback-text {
         font-size: 1.6rem;
 
-        @include respond(desktop){
+        @include desktop{
             font-size: 1.4rem;
         }
     }

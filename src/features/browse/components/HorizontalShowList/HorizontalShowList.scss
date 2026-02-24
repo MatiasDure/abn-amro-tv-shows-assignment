@@ -24,25 +24,34 @@
         display: flex;
         gap: 1rem;
     }
+
+    &__scroll-button {
+        position: absolute;
+        top: 50%;
+        z-index: 2;
+        transform: translateY(-50%);
+        background-color: rgba(0,0,0,0.6);
+        border-radius: .5rem;
+        border: none;
+        height: 40%;
+        width: 4rem;
+        color: white;
+
+        &.right {
+            right: 0;
+        }
+
+        &.left {
+            left: 0;
+        }
+
+        &:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        &:hover .horizontal-list__scroll-button-icon {
+            transform: scale(1.2);
+        }
+    }
 }
 
-.scroll-button {
-    position: absolute;
-    top: 50%;
-    z-index: 2;
-    transform: translateY(-50%);
-    background-color: rgba(0,0,0,0.6);
-    border-radius: 8px;
-    border: none;
-    height: 40%;
-    width: 48px;
-    color: white;
-
-    &.right {
-        right: 0;
-    }
-
-    &.left {
-        left: 0;
-    }
-}

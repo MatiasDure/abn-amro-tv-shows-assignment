@@ -3,19 +3,32 @@
 .show-card {
     position: relative;
     scroll-snap-align: end;
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+    
+    &__poster-button {
+        border-radius: .7rem;
+        overflow: hidden;
+    }
     
     &__poster {
         width: 12rem;
         aspect-ratio: 42/59;
-        border-radius: 10px;
+        height: 100%;
+        object-fit: cover;
+        
+        &:hover {
+            transform: scale(1.1); 
+        }
     }
-
+    
     &__info {
         display: flex; 
         justify-content: space-between; 
         align-items: center;
     }
-
+    
     &__rating-container {
         display: flex;
         align-items: center;
@@ -24,14 +37,14 @@
         font-size: 1.6rem;
         background-color: rgba(0,0,0,0.7);
         color: white;
-        padding: 6px;
-        border-radius: 8px;
+        padding: .4rem;
+        border-radius: .7rem;
         
         @include respond(desktop) {
             font-size: 1.4rem;
         }
     }
-
+    
     &__rating-icon {
         color: gold;
         width: 1.8rem;
@@ -50,6 +63,11 @@
         @include respond(desktop) {
             width: 2.2rem;
             height: 2.2rem;
+        }
+
+        &:hover {
+            fill: #f56565;
+            stroke: #f56565;
         }
     }
 }

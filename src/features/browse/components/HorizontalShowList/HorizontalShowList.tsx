@@ -43,14 +43,14 @@ function HorizontalShowList({title, shows, emptyListFallback, onShowClicked} : H
                 <div className="horizontal-list__scroll-container">
                     { 
                         canScrollLeft && 
-                        <button className="left scroll-button" onClick={scrollLeft}>
-                            <ChevronLeft size={"2.5rem"} />
+                        <button className="left horizontal-list__scroll-button" onClick={scrollLeft}>
+                            <ChevronLeft className="horizontal-list__scroll-button-icon" size={"2.5rem"} />
                         </button>
                     }
                     {
                         canScrollRight && 
-                        <button onClick={scrollRight} className="right scroll-button">
-                            <ChevronRight size={"2.5rem"} />
+                        <button onClick={scrollRight} className="right horizontal-list__scroll-button">
+                            <ChevronRight className="horizontal-list__scroll-button-icon" size={"2.5rem"} />
                         </button>
                     }
                     <div ref={scrollRef} className="horizontal-list__scroll-window">

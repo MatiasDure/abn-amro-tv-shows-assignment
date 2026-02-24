@@ -18,7 +18,7 @@ export default function ShowCard({show, onCardClicked} : ShowCardProps) {
 
     return (
         <li className="show-card">
-            <button onClick={() => onCardClicked(show)}>
+            <button className="show-card__poster-button" onClick={() => onCardClicked(show)}>
                 <img className="show-card__poster" src={show.ImageUrl} />
             </button>
             <div className="show-card__info">

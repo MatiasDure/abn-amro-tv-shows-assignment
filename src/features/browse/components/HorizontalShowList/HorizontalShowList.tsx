@@ -56,17 +56,15 @@ function HorizontalShowList({title, shows, emptyListFallback, onShowClicked} : H
                     <div ref={scrollRef} className="horizontal-list__scroll-window">
                         <ul className="horizontal-list__list">
                             {shows.map(show => (
-                                <ShowCard 
-                                key={show.Id}
-                                show={show}
-                                onCardClicked={onShowClicked}
-                                />
+                                <div key={show.Id} className="horizontal-list__show-card">
+                                    <ShowCard show={show} onCardClicked={onShowClicked}/>
+                                </div>
                             ))}
                         </ul>
                     </div>
                 </div>
                 :
-                <span>{emptyListFallback}</span>
+                <span className="horizontal-list__fallback-text">{emptyListFallback}</span>
             }
         </section>
     );

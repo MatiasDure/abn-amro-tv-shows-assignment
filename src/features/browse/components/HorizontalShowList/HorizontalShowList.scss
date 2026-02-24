@@ -1,10 +1,8 @@
+@use "/src/styles/mixins" as *;
+
 .horizontal-list {
     width: 100%;
     margin-bottom: 1.4rem;
-
-    &:first-of-type { 
-        margin-top: 1.4rem; 
-    }
 
     &__title {
         margin-bottom: .6rem;
@@ -23,6 +21,11 @@
     &__list{
         display: flex;
         gap: 1rem;
+    }
+
+    &__show-card {
+        width: 12rem;
+        flex: 0 0 auto;
     }
 
     &__scroll-button {
@@ -51,6 +54,14 @@
 
         &:hover .horizontal-list__scroll-button-icon {
             transform: scale(1.2);
+        }
+    }
+
+    &__fallback-text {
+        font-size: 1.6rem;
+
+        @include respond(desktop){
+            font-size: 1.4rem;
         }
     }
 }

@@ -6,7 +6,7 @@ import "./styles/global.scss"
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/abn-amro-tv-shows-assignment">
       <App />
     </BrowserRouter>
   </StrictMode>,

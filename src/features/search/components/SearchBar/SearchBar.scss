@@ -1,9 +1,5 @@
 @use "/src/styles/mixins" as *;
 
-.search-bar-container {
-    width: 100%;
-}
-
 .search-bar {
     display: flex;
     gap: .8rem; 
@@ -12,7 +8,6 @@
     padding: .8rem;
     align-items: center;
     height: 48px;
-    max-width: 100%;
     margin: 0px auto;
 
     @include tablet {
@@ -33,6 +28,7 @@
         border: none;
         outline: none; 
         flex: 1; 
+        font-size: max(16px, 1rem);
     }
     
     &__clear-button,

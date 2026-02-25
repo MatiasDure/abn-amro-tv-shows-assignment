@@ -24,10 +24,7 @@ export default function SearchBar({input, placeholder, isFocused, onChange, onFo
     return (
         <div className="search-bar-container">
             <div className="search-bar">
-                <div
-                    className="search-bar__input-container"
-                    onClick={handleSearchBarClicked}
-                    >
+                <div className="search-bar__input-container" onClick={handleSearchBarClicked}>
                     <Search
                         size={20}
                         strokeWidth={1.5}

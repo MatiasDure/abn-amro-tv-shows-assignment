@@ -1,4 +1,4 @@
-export const SEARCHED_SHOWS_MOCK = [
+export const API_SEARCHED_SHOWS_MOCK = [
     {
         "score": 0.904496,
         "show": {

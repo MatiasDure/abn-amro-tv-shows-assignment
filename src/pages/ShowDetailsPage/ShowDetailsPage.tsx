@@ -9,7 +9,7 @@ import { useFavoriteShows } from "../../features/favorite/hooks/useFavoriteShows
 import { Loading } from "../../features/shared/components/Loading/Loading";
 import { ErrorFallback } from "../../features/shared/components/Error/ErrorFallback";
 import { ERROR_FETCH_FAILED, ERROR_NO_ID } from "../../features/shared/constants/messages";
-import { removeHtmlTags } from "../../features/details/utils/formatting/removeHtmlTags";
+import { removeHtmlTags } from "../../features/details/utils/formatting/removeHtmlTags/removeHtmlTags";
 import { ArrowLeft } from "lucide-react";
 import EpisodeCard from "../../features/details/components/EpisodeCard/EpisodeCard";
 
@@ -25,8 +25,8 @@ export default function ShowDetailsPage() {
   if(error) return <ErrorFallback message={error}/>
   if(!result) return <ErrorFallback message={ERROR_FETCH_FAILED}/>
   
-  const favoriteShows = useFavoriteShows()!;
-  const isFavoriteShow = favoriteShows.favoriteShowsIds.includes(id);
+  const favoriteShows = useFavoriteShows();
+  const isFavoriteShow = favoriteShows ? favoriteShows.favoriteShowsIds.includes(id) : false;
 
   return (
     <div className="show-details">
@@ -35,14 +35,14 @@ export default function ShowDetailsPage() {
       </button>
 
       <div className="show-details__header">
-        <img className="show-details__poster" src={result?.ImageUrl} />
+        <img className="show-details__poster" src={result?.ImageUrl ?? undefined} />
 
         <div className="show-details__info">
           <h1 className="show-details__title">{result?.Name}</h1>
 
           <div className="show-details__meta">
-            <Rating value={result?.Rating.toString()} />
-            <FavoriteToggle isFavorite={isFavoriteShow} onToggle={() => favoriteShows.toggleFavoriteShow(id)}/>
+            <Rating value={result?.Rating} />
+            <FavoriteToggle isFavorite={isFavoriteShow} onToggle={() => favoriteShows?.toggleFavoriteShow(id)}/>
           </div>
           <MetaList metaListItems={createShowDetailsMetaListItems(result)} />
         </div>

@@ -18,12 +18,12 @@ export default function ShowCard({show, onCardClicked} : ShowCardProps) {
     const isShowFavorite = favoriteShows?.favoriteShowsIds.includes(show.Id.toString()) ?? false;
 
     return (
-        <li className="show-card">
-            <button className="show-card__poster-button" onClick={() => onCardClicked(show)}>
-                <img className="show-card__poster" src={show.ImageUrl} />
+        <li className="show-card" data-testid="show-card">
+            <button className="show-card__poster-button" data-testid="poster-button" onClick={() => onCardClicked(show)}>
+                <img className="show-card__poster" src={show.ImageUrl ?? undefined} />
             </button>
             <div className="show-card__info">
-                <Rating value={show.Rating > 0 ? show.Rating.toString() : "N/A"}/>
+                <Rating value={show.Rating}/>
                 <FavoriteToggle 
                     isFavorite={isShowFavorite} 
                     onToggle={() => favoriteShows?.toggleFavoriteShow(show.Id.toString())}

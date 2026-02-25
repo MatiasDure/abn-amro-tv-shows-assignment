@@ -7,7 +7,7 @@ type ErrorFallbackProps = {
 
 export function ErrorFallback({ message }: ErrorFallbackProps) {
   return (
-    <div className="error">
+    <div className="error" data-testid="error">
       <TriangleAlert className="error__icon" />
       <span className="error__text">{message}</span>
     </div>

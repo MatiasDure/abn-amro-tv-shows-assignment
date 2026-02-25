@@ -1,11 +1,10 @@
-// import { SHOWS_ENDPOINT } from "./showAPI";
 import { SHOWS_ENDPOINT } from "../../shared/constants/showAPI";
-import { SHOWS_LIST_MOCK } from "../../shared/utils/mocks/show";
+import { API_SHOWS_LIST_MOCK } from "../../shared/utils/mocks/apiShowListResponse";
 
 export async function getShowsByPage(pageNumber: number): Promise<any> {
     if(import.meta.env.MODE === "development") {
         console.log("working in dev environment");
-        return SHOWS_LIST_MOCK;
+        return API_SHOWS_LIST_MOCK;
     } else {
         const res = await fetch(`${import.meta.env.VITE_TVMAZE_BASE_URL}${SHOWS_ENDPOINT}?page=${pageNumber}`);
         

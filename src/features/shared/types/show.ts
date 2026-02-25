@@ -1,7 +1,7 @@
 export type Show = {
     Id: number,
     Name: string,
-    ImageUrl: string,
+    ImageUrl: string | null,
     Genres: string[],
     Rating: number,
 }

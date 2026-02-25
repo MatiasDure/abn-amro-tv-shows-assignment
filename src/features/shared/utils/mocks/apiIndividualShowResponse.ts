@@ -1,4 +1,4 @@
-export const INDIVIDUAL_SHOW_MOCK = {
+export const API_INDIVIDUAL_SHOW_MOCK = {
   "id": 1,
   "url": "https://www.tvmaze.com/shows/1/under-the-dome",
   "name": "Under the Dome",

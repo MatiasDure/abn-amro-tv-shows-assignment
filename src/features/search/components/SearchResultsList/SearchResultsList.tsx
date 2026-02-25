@@ -19,7 +19,7 @@ export default function SearchResultsList({onShowClicked} : SearchResultsListPro
     const filteredShows = shows.filter(s => s.Show.Rating > 0 && s.QuerySimiliarityScore > SIMILIARITY_LOWER_BOUND);
 
     return(
-        <div className="search-results">
+        <div className="search-results" data-testid="search-results">
             {
                 filteredShows.map(s => (
                     <div key={s.Show.Id}>

@@ -44,10 +44,7 @@ export default function SearchBar({input, placeholder, isFocused, onChange, onFo
                 </div>
                 {
                     isFocused &&
-                    <button
-                        className="search-bar__clear-button"
-                        onClick={onCancel}
-                    >
+                    <button className="search-bar__clear-button" onClick={onCancel}>
                         <X/>
                     </button> 
                 }

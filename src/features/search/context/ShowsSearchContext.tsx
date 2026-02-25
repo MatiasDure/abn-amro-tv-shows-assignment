@@ -5,7 +5,7 @@ import { SEARCH_DEBOUNCE_MS } from "../constants/constants";
 import { mapSearchShowResponse } from "../utils/mappers/mapSearchShowResponse";
 import { ERROR_FETCH_FAILED } from "../../shared/constants/messages";
 
-type ShowsSearchContextType = {
+export type ShowsSearchContextType = {
     userQuery: string,
     isSearching: boolean,
     results: SearchedShow[],
@@ -24,7 +24,7 @@ export function ShowsSearchProvider({children} : {children: React.ReactNode}) {
     const [results, setResults] = useState<SearchedShow[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
-
+    
     useEffect(() => {
         if(userQuery.length < 2) return;
         
@@ -33,7 +33,6 @@ export function ShowsSearchProvider({children} : {children: React.ReactNode}) {
         const timeout: number = setTimeout(async () => {
             try{
                 const res: any[] = await getShowsByQuery(userQuery);
-                
                 setResults(res.map(rawShow => mapSearchShowResponse(rawShow)))
             } catch(error) {
                 console.error((error as Error).message);
@@ -42,6 +41,7 @@ export function ShowsSearchProvider({children} : {children: React.ReactNode}) {
                 setIsLoading(false);
             }
         }, SEARCH_DEBOUNCE_MS);
+
 
         return () => clearTimeout(timeout);
     }, [userQuery]);
@@ -68,5 +68,4 @@ export function ShowsSearchProvider({children} : {children: React.ReactNode}) {
             {children}
         </ShowsSearchContext.Provider>
     )
-    
 }

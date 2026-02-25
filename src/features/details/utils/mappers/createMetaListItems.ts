@@ -1,6 +1,6 @@
 import type { MetaInfo } from "../../../shared/types/metaInfo";
 import type { DetailedShow } from "../../types/detailedShow";
-import { formatDate } from "../formatting/formatDate";
+import { formatDate } from "../formatting/formatDate/formatDate";
 
 export function createShowDetailsMetaListItems(show: DetailedShow) : MetaInfo[] {
     return [ 

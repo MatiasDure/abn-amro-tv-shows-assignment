@@ -6,7 +6,6 @@ export function mapShowResponse(data: any) : Show {
         Name: data.name,
         ImageUrl: data.image?.medium ?? null,
         Genres: data.genres,
-        // For some show ratings, average is null. To make filtering easier we set these to -1 instead.
         Rating: data.rating.average ?? -1,
     }
 }

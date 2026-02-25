@@ -1,8 +1,8 @@
 import "./EpisodeCard.scss";
 import type { Episode } from "../../types/episode";
-import { formatDate } from "../../utils/formatting/formatDate";
+import { formatDate } from "../../utils/formatting/formatDate/formatDate";
 import { Rating } from "../../../shared/components/Rating/Rating";
-import { removeHtmlTags } from "../../utils/formatting/removeHtmlTags";
+import { removeHtmlTags } from "../../utils/formatting/removeHtmlTags/removeHtmlTags";
 
 type EpisodeCardProps = {
   episode: Episode;
@@ -23,7 +23,7 @@ export default function EpisodeCard({ episode }: EpisodeCardProps) {
         </div>
 
         <div className="episode-card__rating">
-          <Rating value={episode.Rating.toString()} />
+          <Rating value={episode.Rating} />
         </div>
       </div>
 

@@ -1,7 +1,6 @@
 import { useRef } from "react"
 import type { Show } from "../../../shared/types/show";
-import { useWindowSize } from "../../../shared/hooks/useWindowSize";
-import { useDivScroll } from "../../hooks/useScroll";
+import { useDivScroll } from "../../hooks/useDivScroll";
 import React from "react";
 import ShowCard from "../../../shared/components/ShowCard/ShowCard";
 import { ChevronRight, ChevronLeft } from "lucide-react";
@@ -15,25 +14,8 @@ type HorizontalShowListProps = {
 }
 
 function HorizontalShowList({title, shows, emptyListFallback, onShowClicked} : HorizontalShowListProps) {
-    const screenSize = useWindowSize();
     const scrollRef = useRef<HTMLDivElement | null>(null);
-    const {canScrollLeft, canScrollRight} = useDivScroll(scrollRef, shows.length);
-
-    const scrollLeft = () => {
-        if (!scrollRef.current) return;
-        scrollRef.current.scrollBy({
-            left: -screenSize.Width,
-            behavior: "smooth"
-        });
-    };
-
-    const scrollRight = () => {
-        if (!scrollRef.current) return;
-        scrollRef.current.scrollBy({
-            left: screenSize.Width,
-            behavior: "smooth"
-        });
-    };
+    const { canScrollLeft, canScrollRight, scrollLeft, scrollRight } = useDivScroll(scrollRef, shows.length);
 
     return (
         <section className="horizontal-list">
@@ -43,13 +25,13 @@ function HorizontalShowList({title, shows, emptyListFallback, onShowClicked} : H
                 <div className="horizontal-list__scroll-container">
                     { 
                         canScrollLeft && 
-                        <button className="left horizontal-list__scroll-button" onClick={scrollLeft}>
+                        <button data-testid="left-scroll-button" className="left horizontal-list__scroll-button" onClick={scrollLeft}>
                             <ChevronLeft className="horizontal-list__scroll-button-icon" size={"2.5rem"} />
                         </button>
                     }
                     {
                         canScrollRight && 
-                        <button onClick={scrollRight} className="right horizontal-list__scroll-button">
+                        <button data-testid="right-scroll-button" className="right horizontal-list__scroll-button" onClick={scrollRight}>
                             <ChevronRight className="horizontal-list__scroll-button-icon" size={"2.5rem"} />
                         </button>
                     }

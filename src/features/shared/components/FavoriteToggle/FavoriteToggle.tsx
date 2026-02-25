@@ -13,6 +13,7 @@ export function FavoriteToggle({
   return (
     <button className="favorite-button" onClick={onToggle}>
       <Heart
+        data-testid="favorite-icon"
         className="favorite-button__icon"
         color={isFavorite ? "#f56565" : "black"}
         fill={isFavorite ? "#f56565" : "transparent"}

@@ -1,3 +1,5 @@
+@use "/src/styles/mixins" as *;
+
 .episode-card__header {
   display: flex;
   gap: 1rem;
@@ -11,9 +13,20 @@
 
 .episode-card__title {
   display: flex;
-  gap: 1rem;
+  flex-direction: column;
+  gap: .4rem;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
+
+  @include tablet {
+      flex-direction: row;
+      gap: 1rem;
+  }
+
+  @include desktop {
+    flex-direction: row;
+    gap: 1rem;
+  }
 }
 
 .episode-card__airdate {
@@ -22,7 +35,10 @@
 }
 
 .episode-card__rating {
-  width: 4rem;
+    font-size: 1.2rem;
+    svg {
+        width: 1.2rem;
+    }
 }
 
 .episode-card__summary {

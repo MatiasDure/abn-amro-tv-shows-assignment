@@ -11,6 +11,7 @@ import { ErrorFallback } from "../../features/shared/components/Error/ErrorFallb
 import { ERROR_FETCH_FAILED, ERROR_NO_ID } from "../../features/shared/constants/messages";
 import { removeHtmlTags } from "../../features/details/utils/formatting/removeHtmlTags";
 import { ArrowLeft } from "lucide-react";
+import EpisodeCard from "../../features/details/components/EpisodeCard/EpisodeCard";
 
 export default function ShowDetailsPage() {
   const navigate = useNavigate();
@@ -48,6 +49,17 @@ export default function ShowDetailsPage() {
       </div>
 
       <p className="show-details__summary">{removeHtmlTags(result?.Summary)}</p>
+      {
+          result?.TopEpisode && 
+          (
+            <div>
+              <h2 style={{marginBottom: "1rem"}}>Top Rated</h2>
+              <div className="show-details__episode-card"> 
+                <EpisodeCard episode={result?.TopEpisode}/>
+              </div>
+            </div>
+          )
+      }
     </div>
   );
 }

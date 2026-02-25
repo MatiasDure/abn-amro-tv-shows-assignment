@@ -21,7 +21,7 @@ export default function SearchResultsList({onShowClicked} : SearchResultsListPro
     return(
         <div className="search-results">
             {
-                filteredShows.map(s => (
+                shows.map(s => (
                     <div key={s.Show.Id}>
                         <ShowCard show={s.Show} onCardClicked={onShowClicked}/>
                     </div>

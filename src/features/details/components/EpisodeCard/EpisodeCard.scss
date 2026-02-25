@@ -1,0 +1,32 @@
+.episode-card__header {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.episode-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.episode-card__title {
+  display: flex;
+  gap: 1rem;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.episode-card__airdate {
+    margin-top: 0.4rem;
+    font-size: 1rem;
+}
+
+.episode-card__rating {
+  width: 4rem;
+}
+
+.episode-card__summary {
+  margin-top: 0.4rem;
+  line-height: 1.6;
+  font-size: 1.2rem;
+}

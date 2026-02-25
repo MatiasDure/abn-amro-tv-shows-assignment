@@ -6,7 +6,7 @@ export async function getShowById(showId: string): Promise<any> {
         console.log("working in dev environment");
         return INDIVIDUAL_SHOW_MOCK;
     } else {
-        const res = await fetch(`${import.meta.env.VITE_TVMAZE_BASE_URL}${SHOWS_ENDPOINT}/${showId}`);
+        const res = await fetch(`${import.meta.env.VITE_TVMAZE_BASE_URL}${SHOWS_ENDPOINT}/${showId}?embed=episodes`);
         
         if(!res.ok) throw new Error("Failed to fetch shows");
 

@@ -1,4 +1,5 @@
 import type { Show } from "../../shared/types/show"
+import type { Episode } from "./episode"
 
 export type DetailedShow = Show & {
     Summary: string,
@@ -6,4 +7,6 @@ export type DetailedShow = Show & {
     Status: string,
     Premiered: string,
     Ended: string | null,
+    EpisodesCount: number,
+    TopEpisode: Episode | null
 }

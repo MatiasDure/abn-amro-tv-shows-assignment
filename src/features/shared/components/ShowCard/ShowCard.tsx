@@ -1,7 +1,8 @@
-import { Heart, Star } from "lucide-react"
 import type { Show } from "../../types/show"
 import { useFavoriteShows } from "../../../favorite/hooks/useFavoriteShows"
 import "./ShowCard.scss"
+import { Rating } from "../Rating/Rating"
+import { FavoriteToggle } from "../FavoriteToggle/FavoriteToggle"
 
 type ShowCardProps = {
     show: Show,
@@ -14,7 +15,7 @@ export default function ShowCard({show, onCardClicked} : ShowCardProps) {
     if(!favoriteShows)
         console.error("Error loading favorite shows");
 
-    const isShowFavorite = favoriteShows?.favoriteShowsIds.includes(show.Id.toString());
+    const isShowFavorite = favoriteShows?.favoriteShowsIds.includes(show.Id.toString()) ?? false;
 
     return (
         <li className="show-card">
@@ -22,17 +23,11 @@ export default function ShowCard({show, onCardClicked} : ShowCardProps) {
                 <img className="show-card__poster" src={show.ImageUrl} />
             </button>
             <div className="show-card__info">
-                <span className="show-card__rating-container">
-                    <Star className="show-card__rating-icon" />
-                    <span>{show.Rating}</span> 
-                </span>
-                    <button onClick={() => favoriteShows?.toggleFavoriteShow(show.Id.toString())}>
-                        <Heart 
-                            className="show-card__favorite-button"
-                            color={isShowFavorite ? "#f56565" : "black"}
-                            fill={isShowFavorite ? "#f56565" : "transparent"}
-                        />
-                    </button>
+                <Rating value={show.Rating > 0 ? show.Rating.toString() : "N/A"}/>
+                <FavoriteToggle 
+                    isFavorite={isShowFavorite} 
+                    onToggle={() => favoriteShows?.toggleFavoriteShow(show.Id.toString())}
+                />
             </div>
         </li>
     )

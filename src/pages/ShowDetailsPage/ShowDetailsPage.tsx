@@ -16,16 +16,16 @@ import EpisodeCard from "../../features/details/components/EpisodeCard/EpisodeCa
 export default function ShowDetailsPage() {
   const navigate = useNavigate();
   const { id } = useParams();
-
+  const favoriteShows = useFavoriteShows();
+  
   if(!id) return <ErrorFallback message={ERROR_NO_ID}/>
-
+  
   const {result, isLoading, error} = useShowDetails(id)!;
   
   if(isLoading) return <Loading />
   if(error) return <ErrorFallback message={error}/>
   if(!result) return <ErrorFallback message={ERROR_FETCH_FAILED}/>
   
-  const favoriteShows = useFavoriteShows();
   const isFavoriteShow = favoriteShows ? favoriteShows.favoriteShowsIds.includes(id) : false;
 
   return (

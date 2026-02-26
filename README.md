@@ -1,3 +1,6 @@
+# Deployment
+The application is deployed on GitHub Pages for easy access: **https://matiasdure.github.io/abn-amro-tv-shows-assignment/**
+
 # Architectural Decisions
 
 ## Framework and Language
@@ -26,10 +29,6 @@ SCSS was chosen for its readability and support for mixins, nesting, and variabl
 
 ## Performance Considerations
 Horizontal lists currently render all items without virtualization. A virtualization solution would improve performance for large lists by rendering only visible items. Because of time constraints, this was not implemented, but it is an area for future improvement. Additional edge cases in API responses could also be handled better with more time.
-
-## Deployment
-The application is deployed on GitHub Pages for easy access:  
-**https://matiasdure.github.io/abn-amro-tv-shows-assignment/**
 
 ---
 
